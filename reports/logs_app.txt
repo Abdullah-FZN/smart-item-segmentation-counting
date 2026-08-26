@@ -1,0 +1,294 @@
+﻿======================================================================
+Smart Item Segmentation & Counting -- Video Analytics
+======================================================================
+[app] Using fine-tuned custom weights: C:\Users\LENOVO\Documents\أعمالي\دورة\Computer Vision\Project\weights\package_seg_best.pt
+[app] Downloading sample video -> C:\Users\LENOVO\Documents\أعمالي\دورة\Computer Vision\Project\assets\solutions_ci_demo.mp4
+
+[KDownloading https://ultralytics.com/assets/solutions_ci_demo.mp4 to 'C:\Users\LENOVO\Documents\أعمالي\دورة\Computer Vision\Project\assets\solutions_ci_demo.mp4': 9% ━─────────── 24.0/264.6KB 70.4KB/s 0.1s<3.4s
+[KDownloading https://ultralytics.com/assets/solutions_ci_demo.mp4 to 'C:\Users\LENOVO\Documents\أعمالي\دورة\Computer Vision\Project\assets\solutions_ci_demo.mp4': 21% ━━╸───────── 56.0/264.6KB 126.7KB/s 0.2s<1.6s
+[KDownloading https://ultralytics.com/assets/solutions_ci_demo.mp4 to 'C:\Users\LENOVO\Documents\أعمالي\دورة\Computer Vision\Project\assets\solutions_ci_demo.mp4': 60% ━━━━━━━───── 160.0/264.6KB 1.0MB/s 0.3s<0.1s
+[KDownloading https://ultralytics.com/assets/solutions_ci_demo.mp4 to 'C:\Users\LENOVO\Documents\أعمالي\دورة\Computer Vision\Project\assets\solutions_ci_demo.mp4': 100% ━━━━━━━━━━━━ 264.6KB 672.0KB/s 0.4s
+[app] Video: C:\Users\LENOVO\Documents\أعمالي\دورة\Computer Vision\Project\assets\solutions_ci_demo.mp4 (640x360 @ 30.0fps)
+[app] Counting region (line): [(0, 180), (640, 180)]
+[31m[1mrequirements:[0m Ultralytics requirement ['shapely>=2.0.0'] not found, attempting AutoUpdate...
+Collecting shapely>=2.0.0
+  Downloading shapely-2.1.2-cp313-cp313-win_amd64.whl.metadata (7.1 kB)
+Requirement already satisfied: numpy>=1.21 in c:\users\lenovo\appdata\local\programs\python\python313\lib\site-packages (from shapely>=2.0.0) (2.5.2)
+Downloading shapely-2.1.2-cp313-cp313-win_amd64.whl (1.7 MB)
+   ---------------------------------------- 1.7/1.7 MB 5.0 MB/s eta 0:00:00
+Installing collected packages: shapely
+Successfully installed shapely-2.1.2
+
+[notice] A new release of pip is available: 24.2 -> 26.2.1
+[notice] To update, run: C:\Users\LENOVO\AppData\Local\Programs\Python\Python313\python.exe -m pip install --upgrade pip
+
+[31m[1mrequirements:[0m AutoUpdate success  7.6s
+WARNING [31m[1mrequirements:[0m [1mRestart runtime or rerun command for updates to take effect[0m
+
+Ultralytics Solutions:  {'source': None, 'model': 'C:\\Users\\LENOVO\\Documents\\\\\\Computer Vision\\Project\\weights\\package_seg_best.pt', 'classes': None, 'show_conf': True, 'show_labels': True, 'show_boxes': True, 'region': [(0, 180), (640, 180)], 'colormap': 21, 'show_in': True, 'show_out': True, 'up_angle': 145.0, 'down_angle': 90, 'kpts': [6, 8, 10], 'analytics_type': 'line', 'figsize': (12.8, 7.2), 'blur_ratio': 0.5, 'vision_point': (20, 20), 'crop_dir': 'cropped-detections', 'json_file': None, 'line_width': 2, 'records': 5, 'fps': 30.0, 'max_hist': 5, 'meter_per_pixel': 0.05, 'max_speed': 120, 'show': False, 'iou': 0.5, 'conf': 0.35, 'device': None, 'max_det': 300, 'quantize': None, 'imgsz': 640, 'tracker': 'botsort.yaml', 'verbose': True, 'data': 'images'}
+[31m[1mrequirements:[0m Ultralytics requirement ['lap>=0.5.12'] not found, attempting AutoUpdate...
+Collecting lap>=0.5.12
+  Downloading lap-0.5.13-cp313-cp313-win_amd64.whl.metadata (6.8 kB)
+Requirement already satisfied: numpy>=1.21.6 in c:\users\lenovo\appdata\local\programs\python\python313\lib\site-packages (from lap>=0.5.12) (2.5.2)
+Downloading lap-0.5.13-cp313-cp313-win_amd64.whl (1.5 MB)
+   ---------------------------------------- 1.5/1.5 MB 4.6 MB/s eta 0:00:00
+Installing collected packages: lap
+Successfully installed lap-0.5.13
+
+[notice] A new release of pip is available: 24.2 -> 26.2.1
+[notice] To update, run: C:\Users\LENOVO\AppData\Local\Programs\Python\Python313\python.exe -m pip install --upgrade pip
+
+[31m[1mrequirements:[0m AutoUpdate success  4.9s
+WARNING [31m[1mrequirements:[0m [1mRestart runtime or rerun command for updates to take effect[0m
+
+WARNING No tracks found.
+0: 640x640 50.6ms, 
+Speed: 11490.7ms track, 50.6ms solution per image at shape (1, 3, 640, 640)
+
+WARNING No tracks found.
+1: 640x640 0.4ms, 
+Speed: 137.5ms track, 0.4ms solution per image at shape (1, 3, 640, 640)
+
+WARNING No tracks found.
+2: 640x640 0.3ms, 
+Speed: 129.8ms track, 0.3ms solution per image at shape (1, 3, 640, 640)
+
+WARNING No tracks found.
+3: 640x640 0.4ms, 
+Speed: 132.5ms track, 0.4ms solution per image at shape (1, 3, 640, 640)
+
+WARNING No tracks found.
+4: 640x640 0.4ms, 
+Speed: 123.5ms track, 0.4ms solution per image at shape (1, 3, 640, 640)
+
+WARNING No tracks found.
+5: 640x640 0.4ms, 
+Speed: 128.6ms track, 0.4ms solution per image at shape (1, 3, 640, 640)
+
+WARNING No tracks found.
+6: 640x640 0.4ms, 
+Speed: 130.8ms track, 0.4ms solution per image at shape (1, 3, 640, 640)
+
+WARNING No tracks found.
+7: 640x640 0.3ms, 
+Speed: 127.3ms track, 0.3ms solution per image at shape (1, 3, 640, 640)
+
+WARNING No tracks found.
+8: 640x640 0.4ms, 
+Speed: 131.2ms track, 0.4ms solution per image at shape (1, 3, 640, 640)
+
+WARNING No tracks found.
+9: 640x640 0.4ms, 
+Speed: 141.6ms track, 0.4ms solution per image at shape (1, 3, 640, 640)
+
+WARNING No tracks found.
+10: 640x640 0.4ms, 
+Speed: 136.1ms track, 0.4ms solution per image at shape (1, 3, 640, 640)
+
+WARNING No tracks found.
+11: 640x640 0.5ms, 
+Speed: 136.3ms track, 0.5ms solution per image at shape (1, 3, 640, 640)
+
+WARNING No tracks found.
+12: 640x640 0.4ms, 
+Speed: 138.9ms track, 0.4ms solution per image at shape (1, 3, 640, 640)
+
+WARNING No tracks found.
+13: 640x640 0.3ms, 
+Speed: 124.8ms track, 0.3ms solution per image at shape (1, 3, 640, 640)
+
+WARNING No tracks found.
+14: 640x640 0.3ms, 
+Speed: 129.4ms track, 0.3ms solution per image at shape (1, 3, 640, 640)
+
+WARNING No tracks found.
+15: 640x640 0.3ms, 
+Speed: 128.1ms track, 0.3ms solution per image at shape (1, 3, 640, 640)
+
+WARNING No tracks found.
+16: 640x640 0.3ms, 
+Speed: 126.5ms track, 0.3ms solution per image at shape (1, 3, 640, 640)
+
+WARNING No tracks found.
+17: 640x640 0.4ms, 
+Speed: 130.0ms track, 0.4ms solution per image at shape (1, 3, 640, 640)
+
+WARNING No tracks found.
+18: 640x640 0.4ms, 
+Speed: 125.0ms track, 0.4ms solution per image at shape (1, 3, 640, 640)
+
+WARNING No tracks found.
+19: 640x640 0.3ms, 
+Speed: 123.3ms track, 0.3ms solution per image at shape (1, 3, 640, 640)
+
+WARNING No tracks found.
+20: 640x640 0.4ms, 
+Speed: 129.0ms track, 0.4ms solution per image at shape (1, 3, 640, 640)
+
+WARNING No tracks found.
+21: 640x640 0.3ms, 
+Speed: 133.4ms track, 0.3ms solution per image at shape (1, 3, 640, 640)
+
+WARNING No tracks found.
+22: 640x640 0.4ms, 
+Speed: 114.9ms track, 0.4ms solution per image at shape (1, 3, 640, 640)
+
+WARNING No tracks found.
+23: 640x640 0.4ms, 
+Speed: 123.2ms track, 0.4ms solution per image at shape (1, 3, 640, 640)
+
+WARNING No tracks found.
+24: 640x640 0.4ms, 
+Speed: 129.5ms track, 0.4ms solution per image at shape (1, 3, 640, 640)
+
+WARNING No tracks found.
+25: 640x640 0.3ms, 
+Speed: 120.8ms track, 0.3ms solution per image at shape (1, 3, 640, 640)
+
+WARNING No tracks found.
+26: 640x640 0.4ms, 
+Speed: 126.4ms track, 0.4ms solution per image at shape (1, 3, 640, 640)
+
+WARNING No tracks found.
+27: 640x640 0.4ms, 
+Speed: 129.8ms track, 0.4ms solution per image at shape (1, 3, 640, 640)
+
+WARNING No tracks found.
+28: 640x640 0.4ms, 
+Speed: 126.2ms track, 0.4ms solution per image at shape (1, 3, 640, 640)
+
+WARNING No tracks found.
+29: 640x640 0.4ms, 
+Speed: 130.3ms track, 0.4ms solution per image at shape (1, 3, 640, 640)
+
+WARNING No tracks found.
+30: 640x640 0.3ms, 
+Speed: 126.4ms track, 0.3ms solution per image at shape (1, 3, 640, 640)
+
+WARNING No tracks found.
+31: 640x640 0.4ms, 
+Speed: 122.5ms track, 0.4ms solution per image at shape (1, 3, 640, 640)
+
+WARNING No tracks found.
+32: 640x640 0.4ms, 
+Speed: 134.4ms track, 0.4ms solution per image at shape (1, 3, 640, 640)
+
+WARNING No tracks found.
+33: 640x640 0.3ms, 
+Speed: 123.8ms track, 0.3ms solution per image at shape (1, 3, 640, 640)
+
+WARNING No tracks found.
+34: 640x640 0.3ms, 
+Speed: 121.1ms track, 0.3ms solution per image at shape (1, 3, 640, 640)
+
+WARNING No tracks found.
+35: 640x640 0.4ms, 
+Speed: 135.0ms track, 0.4ms solution per image at shape (1, 3, 640, 640)
+
+WARNING No tracks found.
+36: 640x640 0.3ms, 
+Speed: 121.9ms track, 0.3ms solution per image at shape (1, 3, 640, 640)
+
+WARNING No tracks found.
+37: 640x640 0.3ms, 
+Speed: 120.2ms track, 0.3ms solution per image at shape (1, 3, 640, 640)
+
+WARNING No tracks found.
+38: 640x640 0.4ms, 
+Speed: 126.5ms track, 0.4ms solution per image at shape (1, 3, 640, 640)
+
+WARNING No tracks found.
+39: 640x640 0.3ms, 
+Speed: 120.4ms track, 0.3ms solution per image at shape (1, 3, 640, 640)
+
+WARNING No tracks found.
+40: 640x640 0.4ms, 
+Speed: 124.8ms track, 0.4ms solution per image at shape (1, 3, 640, 640)
+
+WARNING No tracks found.
+41: 640x640 0.4ms, 
+Speed: 128.8ms track, 0.4ms solution per image at shape (1, 3, 640, 640)
+
+WARNING No tracks found.
+42: 640x640 0.4ms, 
+Speed: 122.4ms track, 0.4ms solution per image at shape (1, 3, 640, 640)
+
+WARNING No tracks found.
+43: 640x640 0.8ms, 
+Speed: 128.3ms track, 0.8ms solution per image at shape (1, 3, 640, 640)
+
+WARNING No tracks found.
+44: 640x640 0.4ms, 
+Speed: 126.7ms track, 0.4ms solution per image at shape (1, 3, 640, 640)
+
+WARNING No tracks found.
+45: 640x640 0.4ms, 
+Speed: 128.9ms track, 0.4ms solution per image at shape (1, 3, 640, 640)
+
+WARNING No tracks found.
+46: 640x640 0.4ms, 
+Speed: 138.1ms track, 0.4ms solution per image at shape (1, 3, 640, 640)
+
+WARNING No tracks found.
+47: 640x640 0.4ms, 
+Speed: 133.4ms track, 0.4ms solution per image at shape (1, 3, 640, 640)
+
+WARNING No tracks found.
+48: 640x640 0.4ms, 
+Speed: 134.2ms track, 0.4ms solution per image at shape (1, 3, 640, 640)
+
+WARNING No tracks found.
+49: 640x640 0.4ms, 
+Speed: 137.0ms track, 0.4ms solution per image at shape (1, 3, 640, 640)
+
+WARNING No tracks found.
+50: 640x640 0.4ms, 
+Speed: 137.5ms track, 0.4ms solution per image at shape (1, 3, 640, 640)
+
+WARNING No tracks found.
+51: 640x640 0.4ms, 
+Speed: 126.6ms track, 0.4ms solution per image at shape (1, 3, 640, 640)
+
+WARNING No tracks found.
+52: 640x640 0.4ms, 
+Speed: 129.1ms track, 0.4ms solution per image at shape (1, 3, 640, 640)
+
+WARNING No tracks found.
+53: 640x640 0.4ms, 
+Speed: 125.5ms track, 0.4ms solution per image at shape (1, 3, 640, 640)
+
+WARNING No tracks found.
+54: 640x640 0.3ms, 
+Speed: 129.5ms track, 0.3ms solution per image at shape (1, 3, 640, 640)
+
+WARNING No tracks found.
+55: 640x640 0.3ms, 
+Speed: 125.6ms track, 0.3ms solution per image at shape (1, 3, 640, 640)
+
+WARNING No tracks found.
+56: 640x640 0.4ms, 
+Speed: 127.6ms track, 0.4ms solution per image at shape (1, 3, 640, 640)
+
+WARNING No tracks found.
+57: 640x640 0.4ms, 
+Speed: 126.3ms track, 0.4ms solution per image at shape (1, 3, 640, 640)
+
+WARNING No tracks found.
+58: 640x640 0.4ms, 
+Speed: 129.5ms track, 0.4ms solution per image at shape (1, 3, 640, 640)
+
+WARNING No tracks found.
+59: 640x640 0.3ms, 
+Speed: 122.6ms track, 0.3ms solution per image at shape (1, 3, 640, 640)
+
+WARNING No tracks found.
+60: 640x640 0.4ms, 
+Speed: 127.8ms track, 0.4ms solution per image at shape (1, 3, 640, 640)
+
+WARNING No tracks found.
+61: 640x640 0.4ms, 
+Speed: 126.3ms track, 0.4ms solution per image at shape (1, 3, 640, 640)
+
+[app] Processed 62 frames.
+[app] Final counts -> in: 0, out: 0, total crossings: 0
+[app] Annotated video written to: C:\Users\LENOVO\Documents\أعمالي\دورة\Computer Vision\Project\outputs\counted_output.avi
