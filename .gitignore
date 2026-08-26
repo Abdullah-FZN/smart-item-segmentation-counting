@@ -28,6 +28,8 @@ reports/*
 !reports/logs_setup.txt
 !reports/logs_train.txt
 !reports/logs_app.txt
+!reports/evidence/
+!reports/evidence/*
 
 # --- Python ---
 __pycache__/

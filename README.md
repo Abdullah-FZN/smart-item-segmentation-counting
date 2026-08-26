@@ -27,6 +27,13 @@ and video, with a downstream counting/analytics layer. It is not a
 multi-object-class inventory system or a barcode reader — it answers one
 question well: *"how many discrete items just passed this point?"*
 
+**It actually works** — a real frame from `app_solution.py` running on real
+warehouse footage: the counting line, a live segmented+tracked package, and
+the running in/out tally, all produced by the pipeline in this repo, not a
+mockup:
+
+![ObjectCounter running on a real warehouse video, showing a segmented package crossing the counting line with a live IN 2 / OUT 1 tally](reports/evidence/counting_demo_frame.jpg)
+
 ---
 
 ## 2. Pipeline overview
@@ -159,7 +166,31 @@ output lives in `reports/` (`logs_setup.txt`, `logs_train.txt`,
   written) using the default public demo clip; produced 0 counted
   crossings, exactly as anticipated in the "Known limitation" section
   below (that clip doesn't contain packages) — confirming the pipeline
-  mechanics work, not the domain-specific count.
+  mechanics work, not the domain-specific count. Re-run against real
+  warehouse footage (see the frame above) instead produced a real,
+  non-zero **2 in / 1 out / 3 total** count.
+
+### Training curves (real, from this run)
+
+![Train/val box, seg, cls, dfl loss and precision/recall/mAP50/mAP50-95 curves over 10 epochs, all trending in the healthy direction with no train/val divergence](reports/evidence/results.png)
+
+Losses fall and precision/recall/mAP climb across all 10 epochs with no
+divergence between train and val — see the "Custom training" section
+below for exactly what this curve shows and what it means.
+
+### Test-set confusion matrix (normalized)
+
+![Normalized confusion matrix on the 89-image test split: 94% of true package instances predicted correctly as package](reports/evidence/confusion_matrix_normalized.png)
+
+### Sample predictions on held-out test images
+
+Two of the 89 test-set images, run through `weights/package_seg_best.pt`
+(never seen during training), with predicted masks and confidence scores
+overlaid — the model correctly finds and segments boxes on the conveyor
+while ignoring the person and background:
+
+![6 packages correctly detected and segmented on a conveyor belt, confidences 0.64-0.93](reports/evidence/sample_prediction_conveyor.jpg)
+![10 packages correctly detected and segmented across two conveyor belts in a busier scene](reports/evidence/sample_prediction_busy.jpg)
 
 ## 6. Evaluation: what the metrics mean here
 
@@ -187,10 +218,18 @@ pipeline:
 - **Confidence 0.35** is a deliberately moderate cutoff — low enough to
   still catch partially-occluded or motion-blurred items on a conveyor,
   high enough to filter out the low-confidence noise a nano model produces
-  on background clutter. (Ultralytics also writes `F1_curve.png` /
-  `P_curve.png` / `R_curve.png` under `runs/segment/.../val*/` per training
-  run — the actual best-F1 confidence for your trained weights can be read
-  off that curve and used to retune this value.)
+  on background clutter. Ultralytics writes an F1-vs-confidence curve for
+  every val run (`reports/evidence/mask_f1_curve.png`, from this project's
+  actual test-set evaluation) — it peaks at **F1 = 0.92 at confidence
+  0.448**, but is essentially flat (F1 ≈ 0.91-0.92) across the entire
+  0.0-0.5 range before falling off sharply past ~0.6. `CONF_THRESHOLD =
+  0.35` sits deliberately on that flat plateau, slightly below the exact
+  peak — trading a statistically negligible amount of F1 for a threshold
+  that stays robust on frames slightly harder than the test set, and
+  favors recall over precision per the business-case reasoning in the
+  next section.
+
+  ![Mask F1 score vs. confidence threshold curve for the package class, test set](reports/evidence/mask_f1_curve.png)
 - **IoU 0.5** is the standard NMS overlap threshold: it merges duplicate
   boxes/masks for the same physical item (important for counting — without
   it, one box on a conveyor can be double-counted) without merging two
@@ -237,22 +276,32 @@ On a small, single-class, nano-model fine-tune, expect most errors to be:
 - Standard Ultralytics augmentations (mosaic, flips, HSV jitter) are left
   **on** by default — another training knob "touched" deliberately, since
   they're the main defense against overfitting a small custom dataset.
-- **What actually happened in this run:** neither overfitting nor
-  underfitting — the model converged almost immediately and then
-  plateaued. Per-epoch validation (mask metrics, on the val split, from
-  `reports/logs_train.txt`) went from **mAP50 0.912 / precision 0.866 /
-  recall 0.901 at epoch 1** to **mAP50 0.910 / precision 0.885 / recall
-  0.880 at epoch 10** — essentially flat across all 10 epochs, with
-  precision and recall trading off slightly rather than both degrading
-  (the signature of overfitting) or both staying poor (the signature of
-  underfitting). This is expected given `freeze=10`: with the COCO-pretrained
-  backbone frozen, transfer learning did almost all the work in the very
-  first epoch, and the remaining 9 epochs mostly fine-tuned the head. The
-  practical takeaway: **more epochs at this configuration would have
-  yielded diminishing returns** — the productive next step to push mAP
-  higher isn't `epochs`, it's unfreezing more layers (`FREEZE_BACKBONE`)
-  or raising `imgsz` back toward 640, both of which cost more compute per
-  epoch than adding epochs would.
+- **What actually happened in this run:** mild **underfitting relative to
+  the epoch budget** — the model was still improving steadily when
+  training stopped at epoch 10, not overfit and not yet fully converged.
+  Ground-truth per-epoch numbers (mask metrics, val split, from
+  `runs/segment/package_seg_train/results.csv`) rose across the whole run:
+
+  | Epoch | Precision (M) | Recall (M) | mAP50 (M) | mAP50-95 (M) |
+  |---|---|---|---|---|
+  | 1 | 0.815 | 0.730 | 0.809 | 0.581 |
+  | 5 | 0.843 | 0.877 | 0.892 | 0.666 |
+  | 10 | 0.885 | 0.880 | 0.910 | 0.718 |
+
+  Both train and val losses (`box_loss`, `seg_loss`, `cls_loss`, `dfl_loss`)
+  decreased essentially monotonically for all 10 epochs with no divergence
+  between them (val loss never rose while train loss fell — the actual
+  signature of overfitting) — see `reports/evidence/results.png`. mAP50-95
+  was still climbing at the final epoch (+0.008 from epoch 9 to 10), which
+  means the run hadn't plateaued: **more epochs would very likely have
+  kept improving it further**. This is the direct, measured cost of the
+  epochs=10/imgsz=320 trade-off documented above — cutting the run short
+  for CPU time bought feasibility within the deadline at the price of some
+  achievable accuracy. The one anomaly worth flagging honestly: `val/seg_loss`
+  spikes at epoch 2 (1.45 → 2.26, right as the LR warmup phase ends) and
+  mask mAP50-95 dips in lockstep (0.581 → 0.464 that same epoch) before
+  both resume improving for the rest of the run — a transient blip, not a
+  trend, and not something we'd worry about if the run continued.
 - **General diagnostic method** (for future runs / different datasets):
   compare the train vs. val loss curves in
   `runs/segment/package_seg_train/results.png`. Diverging curves (train
@@ -319,7 +368,8 @@ Project/
 ├── datasets/                # (gitignored) downloaded package-seg dataset
 ├── weights/                 # (gitignored) package_seg_best.pt / .onnx
 ├── runs/                    # (gitignored) Ultralytics training/val artifacts, curves, confusion matrix
-├── reports/                 # val_metrics.json + logs_setup/train/app.txt (real captured run output -- evidence of execution)
+├── reports/                 # val_metrics.json + logs_setup/train/app.txt (real captured run output)
+│   └── evidence/            # training curves, confusion matrix, F1 curve, sample predictions, counting demo frame
 ├── assets/                  # (gitignored) downloaded/user-supplied input video
 └── outputs/                 # (gitignored) annotated output video
 ```
