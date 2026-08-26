@@ -1,0 +1,22 @@
+# Core Ultralytics YOLO API: model loading, train/val/predict/export,
+# and the `ultralytics.solutions` module (ObjectCounter, etc.)
+ultralytics>=8.3.0
+
+# OpenCV: video capture, frame processing, and writing the annotated output.
+opencv-python>=4.9.0
+
+# ONNX export target + runtime, for the Deployment & Export deliverable
+# (model.export(format="onnx")) and for sanity-checking the exported model.
+onnx>=1.16.0
+onnxslim>=0.1.31
+onnxruntime>=1.18.0
+
+# YAML parsing for data.yaml / dataset configs.
+pyyaml>=6.0
+
+# Pulled in by ultralytics.solutions.ObjectCounter (region geometry) and its
+# tracker backend (BoT-SORT/ByteTrack) respectively. Ultralytics auto-installs
+# these on first use if missing, but pinning them here makes a fresh
+# `pip install -r requirements.txt` complete in one pass.
+shapely>=2.0.0
+lap>=0.5.12

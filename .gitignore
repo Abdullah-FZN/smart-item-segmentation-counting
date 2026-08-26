@@ -1,0 +1,51 @@
+# --- Ultralytics run artifacts (large, regenerable) ---
+runs/
+datasets/
+
+# --- Model weights (large binaries; download/train instead of committing) ---
+*.pt
+*.onnx
+*.engine
+*.mlpackage
+*.tflite
+*.torchscript
+weights/
+
+# --- Generated media / evidence artifacts ---
+assets/*.mp4
+assets/*.avi
+outputs/
+*.avi
+*.mp4
+
+# Keep small human-readable evidence of runs (metrics JSON + captured run
+# logs) under version control even though the rest of reports/ output is
+# throwaway. These logs are the "evidence of execution" for the rubric --
+# real captured stdout from project_setup.py / train_and_eval.py / app_solution.py.
+reports/*
+!reports/.gitkeep
+!reports/val_metrics.json
+!reports/logs_setup.txt
+!reports/logs_train.txt
+!reports/logs_app.txt
+
+# --- Python ---
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+env/
+*.egg-info/
+.pytest_cache/
+
+# --- Editors / OS / tooling ---
+.vscode/
+.idea/
+.claude/
+.DS_Store
+Thumbs.db
+
+# --- Secrets ---
+.env
+*.key
