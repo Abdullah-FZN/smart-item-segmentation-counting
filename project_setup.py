@@ -85,7 +85,7 @@ def main() -> None:
     configure_dataset_cache()
     data_dict = download_and_verify_dataset()
     verify_structure(data_dict)
-    print(f"[setup] Done. Train next with: python train_and_eval.py")
+    print("[setup] Done. Train next with: python train_and_eval.py")
 
 
 if __name__ == "__main__":

@@ -67,7 +67,7 @@ project_setup.py            train_and_eval.py                 app_solution.py
 
 ## 3. Prerequisites
 
-- Python 3.10+
+- Python 3.10+ (this repo was built and tested on 3.13)
 - ~2 GB free disk (dataset + weights + runs)
 - No GPU required (the nano model trains on CPU; `config.py` defaults to
   imgsz=320/epochs=10 to keep a full run under an hour or two on CPU --
@@ -145,6 +145,16 @@ output lives in `reports/` (`logs_setup.txt`, `logs_train.txt`,
   pixel-mask boundaries are inherently harder to get right at every IoU
   threshold than a bounding box is.
 - **ONNX export:** succeeded, `weights/package_seg_best.onnx` (11.0 MB), opset 18.
+  **Why ONNX** (vs. OpenVINO/TensorRT/TFLite): this project's target
+  environment is a CPU-only laptop with no vendor-specific accelerator
+  (no Intel OpenVINO deployment target, no NVIDIA GPU for TensorRT), so a
+  hardware-agnostic format matters more than a hardware-specific speedup.
+  ONNX is the most portable option — it runs anywhere via `onnxruntime`
+  (Windows/Linux/macOS, CPU or GPU) without pinning the deployment target
+  to one vendor's runtime, and it's a single `model.export(format="onnx")`
+  call away from the same `.pt` checkpoint. If this were deployed to an
+  Intel-only edge box or an NVIDIA Jetson instead, OpenVINO or TensorRT
+  would be the better-justified choice — see `docs.ultralytics.com/integrations`.
 - **Video pipeline:** ran end-to-end (62 frames processed, annotated video
   written) using the default public demo clip; produced 0 counted
   crossings, exactly as anticipated in the "Known limitation" section
@@ -227,11 +237,28 @@ On a small, single-class, nano-model fine-tune, expect most errors to be:
 - Standard Ultralytics augmentations (mosaic, flips, HSV jitter) are left
   **on** by default — another training knob "touched" deliberately, since
   they're the main defense against overfitting a small custom dataset.
-- **Over/underfitting check:** compare the train vs. val loss curves in
-  `runs/segment/package_seg_train/results.png` after training. Diverging
-  curves (train loss keeps dropping, val loss rises) → overfitting → lower
-  `freeze`, add more augmentation, or reduce epochs. Both curves flat and
-  high → underfitting → raise `epochs`, unfreeze more layers, or check for
+- **What actually happened in this run:** neither overfitting nor
+  underfitting — the model converged almost immediately and then
+  plateaued. Per-epoch validation (mask metrics, on the val split, from
+  `reports/logs_train.txt`) went from **mAP50 0.912 / precision 0.866 /
+  recall 0.901 at epoch 1** to **mAP50 0.910 / precision 0.885 / recall
+  0.880 at epoch 10** — essentially flat across all 10 epochs, with
+  precision and recall trading off slightly rather than both degrading
+  (the signature of overfitting) or both staying poor (the signature of
+  underfitting). This is expected given `freeze=10`: with the COCO-pretrained
+  backbone frozen, transfer learning did almost all the work in the very
+  first epoch, and the remaining 9 epochs mostly fine-tuned the head. The
+  practical takeaway: **more epochs at this configuration would have
+  yielded diminishing returns** — the productive next step to push mAP
+  higher isn't `epochs`, it's unfreezing more layers (`FREEZE_BACKBONE`)
+  or raising `imgsz` back toward 640, both of which cost more compute per
+  epoch than adding epochs would.
+- **General diagnostic method** (for future runs / different datasets):
+  compare the train vs. val loss curves in
+  `runs/segment/package_seg_train/results.png`. Diverging curves (train
+  loss keeps dropping, val loss rises) → overfitting → lower `freeze`,
+  add more augmentation, or reduce epochs. Both curves flat and high →
+  underfitting → raise `epochs`, unfreeze more layers, or check for
   bad/scarce labels.
 
 ---

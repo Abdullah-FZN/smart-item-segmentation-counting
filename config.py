@@ -53,9 +53,9 @@ DATA_YAML = "package-seg.yaml"
 # Model
 # ---------------------------------------------------------------------------
 # yolo11n-seg is the smallest, fastest official Ultralytics segmentation
-# checkpoint -> fast enough to fine-tune for 20 epochs on a laptop/CPU within
-# a tight deadline. Swap for "yolo26n-seg.pt" if you have the newer YOLO26
-# weights available and want a stronger baseline.
+# checkpoint -> fast enough to fine-tune on CPU within a tight deadline (see
+# EPOCHS/IMGSZ below). Swap for "yolo26n-seg.pt" if you have the newer
+# YOLO26 weights available and want a stronger baseline.
 BASE_SEG_MODEL = "yolo11n-seg.pt"
 
 # Stable names for the artifacts produced by train_and_eval.py.
@@ -65,7 +65,8 @@ FINAL_PT_PATH = WEIGHTS_DIR / FINAL_PT_NAME
 FINAL_ONNX_PATH = WEIGHTS_DIR / FINAL_ONNX_NAME
 
 # ---------------------------------------------------------------------------
-# Training knobs (touched deliberately, see README "Training decisions")
+# Training knobs (touched deliberately, see README "Custom training: what
+# was tuned and why")
 # ---------------------------------------------------------------------------
 # NOTE: imgsz=320 (rather than the 640 the base checkpoint was pretrained at)
 # and epochs=10 (rather than 20) were chosen after timing the first few
@@ -73,9 +74,9 @@ FINAL_ONNX_PATH = WEIGHTS_DIR / FINAL_ONNX_NAME
 # epoch over 1920 images was measured at ~20+ minutes/epoch (~7+ hours for
 # the full run), which does not fit a same-day deadline. Halving imgsz cuts
 # the per-image compute ~4x (pixel count scales quadratically with side
-# length), and this is a documented, deliberate trade-off -- see README
-# "Training decisions" for the accuracy implication and how to restore
-# imgsz=640/epochs=20 on faster hardware or a GPU.
+# length), and this is a documented, deliberate trade-off -- see the README
+# section above for the accuracy implication (real results included) and
+# how to restore imgsz=640/epochs=20 on faster hardware or a GPU.
 EPOCHS = 10
 IMGSZ = 320
 BATCH = 16

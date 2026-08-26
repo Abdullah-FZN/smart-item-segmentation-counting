@@ -58,8 +58,8 @@ def train() -> Path:
         `PATIENCE` epochs straight, guarding against overfitting a small
         dataset.
       - freeze=10             : freeze the first 10 backbone layers so we
-        only fine-tune the neck/head. With a few hundred images and 20
-        epochs there isn't enough data to safely retrain the full
+        only fine-tune the neck/head. With under 2,000 images and a short
+        epoch budget there isn't enough data to safely retrain the full
         backbone from scratch without overfitting; freezing it keeps the
         general-purpose COCO features and lets training focus capacity
         on learning what "package" looks like. Set FREEZE_BACKBONE=0 in
@@ -169,7 +169,7 @@ def export_and_publish(best_path: Path) -> Path:
 
     shutil.copy2(best_path, config.FINAL_PT_PATH)
     shutil.copy2(onnx_path, config.FINAL_ONNX_PATH)
-    print(f"[export] Published weights:")
+    print("[export] Published weights:")
     print(f"    PyTorch : {config.FINAL_PT_PATH}")
     print(f"    ONNX    : {config.FINAL_ONNX_PATH}")
 
