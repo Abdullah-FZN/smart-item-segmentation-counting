@@ -392,7 +392,7 @@ This project was completed as the capstone for **Computer Vision for
 Developers with Ultralytics**, delivered by **SDAIA Academy** via Learning
 Space (5-day on-site capstone, 30 training hours).
 
-**Cohort / session dates:** Course session dated **2026-05-14** (per the
+**Cohort / session dates:** Course session dated **2026-08-23** (per the
 official Ultralytics YOLO Foundations course materials); this capstone
 project was built and submitted in **August 2026**.
 
