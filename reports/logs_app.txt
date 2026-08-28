@@ -1,42 +1,42 @@
 ﻿======================================================================
 Smart Item Segmentation & Counting -- Video Analytics
 ======================================================================
-[app] Using fine-tuned custom weights: C:\Users\LENOVO\Documents\أعمالي\دورة\Computer Vision\Project\weights\package_seg_best.pt
-[app] Downloading sample video -> C:\Users\LENOVO\Documents\أعمالي\دورة\Computer Vision\Project\assets\solutions_ci_demo.mp4
+[app] Using fine-tuned custom weights: C:\Users\<user>\Documents\أعمالي\دورة\Computer Vision\Project\weights\package_seg_best.pt
+[app] Downloading sample video -> C:\Users\<user>\Documents\أعمالي\دورة\Computer Vision\Project\assets\solutions_ci_demo.mp4
 
-[KDownloading https://ultralytics.com/assets/solutions_ci_demo.mp4 to 'C:\Users\LENOVO\Documents\أعمالي\دورة\Computer Vision\Project\assets\solutions_ci_demo.mp4': 9% ━─────────── 24.0/264.6KB 70.4KB/s 0.1s<3.4s
-[KDownloading https://ultralytics.com/assets/solutions_ci_demo.mp4 to 'C:\Users\LENOVO\Documents\أعمالي\دورة\Computer Vision\Project\assets\solutions_ci_demo.mp4': 21% ━━╸───────── 56.0/264.6KB 126.7KB/s 0.2s<1.6s
-[KDownloading https://ultralytics.com/assets/solutions_ci_demo.mp4 to 'C:\Users\LENOVO\Documents\أعمالي\دورة\Computer Vision\Project\assets\solutions_ci_demo.mp4': 60% ━━━━━━━───── 160.0/264.6KB 1.0MB/s 0.3s<0.1s
-[KDownloading https://ultralytics.com/assets/solutions_ci_demo.mp4 to 'C:\Users\LENOVO\Documents\أعمالي\دورة\Computer Vision\Project\assets\solutions_ci_demo.mp4': 100% ━━━━━━━━━━━━ 264.6KB 672.0KB/s 0.4s
-[app] Video: C:\Users\LENOVO\Documents\أعمالي\دورة\Computer Vision\Project\assets\solutions_ci_demo.mp4 (640x360 @ 30.0fps)
+[KDownloading https://ultralytics.com/assets/solutions_ci_demo.mp4 to 'C:\Users\<user>\Documents\أعمالي\دورة\Computer Vision\Project\assets\solutions_ci_demo.mp4': 9% ━─────────── 24.0/264.6KB 70.4KB/s 0.1s<3.4s
+[KDownloading https://ultralytics.com/assets/solutions_ci_demo.mp4 to 'C:\Users\<user>\Documents\أعمالي\دورة\Computer Vision\Project\assets\solutions_ci_demo.mp4': 21% ━━╸───────── 56.0/264.6KB 126.7KB/s 0.2s<1.6s
+[KDownloading https://ultralytics.com/assets/solutions_ci_demo.mp4 to 'C:\Users\<user>\Documents\أعمالي\دورة\Computer Vision\Project\assets\solutions_ci_demo.mp4': 60% ━━━━━━━───── 160.0/264.6KB 1.0MB/s 0.3s<0.1s
+[KDownloading https://ultralytics.com/assets/solutions_ci_demo.mp4 to 'C:\Users\<user>\Documents\أعمالي\دورة\Computer Vision\Project\assets\solutions_ci_demo.mp4': 100% ━━━━━━━━━━━━ 264.6KB 672.0KB/s 0.4s
+[app] Video: C:\Users\<user>\Documents\أعمالي\دورة\Computer Vision\Project\assets\solutions_ci_demo.mp4 (640x360 @ 30.0fps)
 [app] Counting region (line): [(0, 180), (640, 180)]
 [31m[1mrequirements:[0m Ultralytics requirement ['shapely>=2.0.0'] not found, attempting AutoUpdate...
 Collecting shapely>=2.0.0
   Downloading shapely-2.1.2-cp313-cp313-win_amd64.whl.metadata (7.1 kB)
-Requirement already satisfied: numpy>=1.21 in c:\users\lenovo\appdata\local\programs\python\python313\lib\site-packages (from shapely>=2.0.0) (2.5.2)
+Requirement already satisfied: numpy>=1.21 in C:\Users\<user>\appdata\local\programs\python\python313\lib\site-packages (from shapely>=2.0.0) (2.5.2)
 Downloading shapely-2.1.2-cp313-cp313-win_amd64.whl (1.7 MB)
    ---------------------------------------- 1.7/1.7 MB 5.0 MB/s eta 0:00:00
 Installing collected packages: shapely
 Successfully installed shapely-2.1.2
 
 [notice] A new release of pip is available: 24.2 -> 26.2.1
-[notice] To update, run: C:\Users\LENOVO\AppData\Local\Programs\Python\Python313\python.exe -m pip install --upgrade pip
+[notice] To update, run: C:\Users\<user>\AppData\Local\Programs\Python\Python313\python.exe -m pip install --upgrade pip
 
 [31m[1mrequirements:[0m AutoUpdate success  7.6s
 WARNING [31m[1mrequirements:[0m [1mRestart runtime or rerun command for updates to take effect[0m
 
-Ultralytics Solutions:  {'source': None, 'model': 'C:\\Users\\LENOVO\\Documents\\\\\\Computer Vision\\Project\\weights\\package_seg_best.pt', 'classes': None, 'show_conf': True, 'show_labels': True, 'show_boxes': True, 'region': [(0, 180), (640, 180)], 'colormap': 21, 'show_in': True, 'show_out': True, 'up_angle': 145.0, 'down_angle': 90, 'kpts': [6, 8, 10], 'analytics_type': 'line', 'figsize': (12.8, 7.2), 'blur_ratio': 0.5, 'vision_point': (20, 20), 'crop_dir': 'cropped-detections', 'json_file': None, 'line_width': 2, 'records': 5, 'fps': 30.0, 'max_hist': 5, 'meter_per_pixel': 0.05, 'max_speed': 120, 'show': False, 'iou': 0.5, 'conf': 0.35, 'device': None, 'max_det': 300, 'quantize': None, 'imgsz': 640, 'tracker': 'botsort.yaml', 'verbose': True, 'data': 'images'}
+Ultralytics Solutions:  {'source': None, 'model': 'C:\Users\<user>\\Documents\\\\\\Computer Vision\\Project\\weights\\package_seg_best.pt', 'classes': None, 'show_conf': True, 'show_labels': True, 'show_boxes': True, 'region': [(0, 180), (640, 180)], 'colormap': 21, 'show_in': True, 'show_out': True, 'up_angle': 145.0, 'down_angle': 90, 'kpts': [6, 8, 10], 'analytics_type': 'line', 'figsize': (12.8, 7.2), 'blur_ratio': 0.5, 'vision_point': (20, 20), 'crop_dir': 'cropped-detections', 'json_file': None, 'line_width': 2, 'records': 5, 'fps': 30.0, 'max_hist': 5, 'meter_per_pixel': 0.05, 'max_speed': 120, 'show': False, 'iou': 0.5, 'conf': 0.35, 'device': None, 'max_det': 300, 'quantize': None, 'imgsz': 640, 'tracker': 'botsort.yaml', 'verbose': True, 'data': 'images'}
 [31m[1mrequirements:[0m Ultralytics requirement ['lap>=0.5.12'] not found, attempting AutoUpdate...
 Collecting lap>=0.5.12
   Downloading lap-0.5.13-cp313-cp313-win_amd64.whl.metadata (6.8 kB)
-Requirement already satisfied: numpy>=1.21.6 in c:\users\lenovo\appdata\local\programs\python\python313\lib\site-packages (from lap>=0.5.12) (2.5.2)
+Requirement already satisfied: numpy>=1.21.6 in C:\Users\<user>\appdata\local\programs\python\python313\lib\site-packages (from lap>=0.5.12) (2.5.2)
 Downloading lap-0.5.13-cp313-cp313-win_amd64.whl (1.5 MB)
    ---------------------------------------- 1.5/1.5 MB 4.6 MB/s eta 0:00:00
 Installing collected packages: lap
 Successfully installed lap-0.5.13
 
 [notice] A new release of pip is available: 24.2 -> 26.2.1
-[notice] To update, run: C:\Users\LENOVO\AppData\Local\Programs\Python\Python313\python.exe -m pip install --upgrade pip
+[notice] To update, run: C:\Users\<user>\AppData\Local\Programs\Python\Python313\python.exe -m pip install --upgrade pip
 
 [31m[1mrequirements:[0m AutoUpdate success  4.9s
 WARNING [31m[1mrequirements:[0m [1mRestart runtime or rerun command for updates to take effect[0m
@@ -291,4 +291,4 @@ Speed: 126.3ms track, 0.4ms solution per image at shape (1, 3, 640, 640)
 
 [app] Processed 62 frames.
 [app] Final counts -> in: 0, out: 0, total crossings: 0
-[app] Annotated video written to: C:\Users\LENOVO\Documents\أعمالي\دورة\Computer Vision\Project\outputs\counted_output.avi
+[app] Annotated video written to: C:\Users\<user>\Documents\أعمالي\دورة\Computer Vision\Project\outputs\counted_output.avi
