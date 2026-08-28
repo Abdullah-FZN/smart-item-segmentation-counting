@@ -69,6 +69,15 @@ project_setup.py            train_and_eval.py                 app_solution.py
 - `project_setup.py` — downloads/verifies the dataset.
 - `train_and_eval.py` — fine-tunes, validates, and exports the model.
 - `app_solution.py` — the video counting application.
+- **[`capstone_walkthrough.ipynb`](capstone_walkthrough.ipynb)** — an
+  executed, code-level companion notebook: walks through what each script
+  above does and why, live-loads the trained model, re-runs a real
+  `model.val()` on the test split and two real `model.predict()` calls
+  (captured output included, not hand-typed), and displays the evidence
+  images inline. Open it on GitHub to read the captured outputs directly,
+  or run it yourself (`jupyter nbconvert --to notebook --execute
+  capstone_walkthrough.ipynb`, after `pip install nbconvert ipykernel`)
+  once `datasets/` and `weights/` exist.
 
 ---
 
@@ -362,6 +371,7 @@ Project/
 ├── project_setup.py        # dataset download + verification
 ├── train_and_eval.py       # train -> val -> export
 ├── app_solution.py         # OpenCV + ObjectCounter video pipeline
+├── capstone_walkthrough.ipynb  # executed, code-level walkthrough notebook
 ├── requirements.txt
 ├── .gitignore
 ├── README.md

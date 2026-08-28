@@ -32,6 +32,7 @@ reports/*
 !reports/evidence/*
 
 # --- Python ---
+.ipynb_checkpoints/
 __pycache__/
 *.pyc
 *.pyo
